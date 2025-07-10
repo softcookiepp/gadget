@@ -662,7 +662,7 @@ def ggml_is_contiguous(tensor): ...
     [ctypes.c_int],
     ggml_type_traits
 )
-def ggml_internal_get_type_traits(ttype): ...
+def ggml_get_type_traits(ttype): ...
 
 ## graphs
 
@@ -842,13 +842,13 @@ def ggml_argmax(ctx, a): ...
     ggml_tensor_p
 )
 def ggml_repeat(ctx, a, b): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p],
     ggml_tensor_p
 )
 def ggml_repeat_back(ctx, a, b): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p, ctypes.c_int],
     ggml_tensor_p
@@ -992,13 +992,13 @@ def ggml_silu(ctx, a): ...
     ggml_tensor_p
 )
 def ggml_silu_inplace(ctx, a): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p],
     ggml_tensor_p
 )
 def ggml_silu_back(ctx, a, b): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p],
     ggml_tensor_p
@@ -1046,13 +1046,13 @@ def ggml_group_norm(ctx, a, n_groups): ...
     ggml_tensor_p
 )
 def ggml_group_norm_inplace(ctx, a, n_groups): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p, ctypes.c_float],
     ggml_tensor_p
 )
 def ggml_rms_norm_back(ctx, a, b, eps): ...
-
+"""
 @named_output
 @check_inputs(ggml_can_mul_mat)
 @ctypes_function(_ggml,
@@ -1249,13 +1249,13 @@ def ggml_transpose(ctx, a): ...
     ggml_tensor_p
 )
 def ggml_get_rows(ctx, a, b): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p, ggml_tensor_p],
     ggml_tensor_p
 )
 def ggml_get_rows_back(ctx, a, b, c): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p],
     ggml_tensor_p
@@ -1306,6 +1306,7 @@ def ggml_soft_max_inplace(ctx, a): ...
 )
 def ggml_soft_max_ext(ctx, a, mask, scale, max_bias): ...
 
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p],
     ggml_tensor_p
@@ -1317,7 +1318,7 @@ def ggml_soft_max_back(ctx, a, b): ...
     ggml_tensor_p
 )
 def ggml_soft_max_back_inplace(ctx, a, b): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p, ctypes.c_int, ctypes.c_int],
     ggml_tensor_p
@@ -1347,13 +1348,13 @@ def ggml_rope_ext_inplace(ctx, a, b, c, n_dims, mode, n_ctx_orig, freq_base, fre
     None
 )
 def ggml_rope_yarn_corr_dims(n_dims, n_ctx_orig, freq_base, beta_fast, beta_slow, dims): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p, ggml_tensor_p, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_float, ctypes.c_float, ctypes.c_float, ctypes.c_float, ctypes.c_float, ctypes.c_float],
     ggml_tensor_p
 )
 def ggml_rope_back(ctx, a, b, c, n_dims, mode, n_ctx_orig, freq_base, freq_scale, ext_factor, attn_factor, beta_fast, beta_slow): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ctypes.c_float, ctypes.c_float],
     ggml_tensor_p
@@ -1370,7 +1371,7 @@ def ggml_im2col(ctx, a, b, s0, s1, p0, p1, d0, d1, is_2D, dst_type): ...
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int, ctypes.c_int],
     ggml_tensor_p
 )
-def ggml_conv_depthwise_2d(ctx, a, b, s0, s1, p0, p1, d0, d1): ...
+def ggml_conv_2d_dw(ctx, a, b, s0, s1, p0, p1, d0, d1): ...
 
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p, ctypes.c_int, ctypes.c_int, ctypes.c_int],
@@ -1479,13 +1480,13 @@ def ggml_flash_attn_ext(ctx, q, k, v, mask, scale, max_bias): ...
     None
 )
 def ggml_flash_attn_ext_set_prec(a, prec): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p, ggml_tensor_p, ggml_tensor_p, ctypes.c_bool],
     ggml_tensor_p
 )
 def ggml_flash_attn_back(ctx, q, k, v, d, masked): ...
-
+"""
 @ctypes_function(_ggml,
     [ggml_context_p, ggml_tensor_p, ggml_tensor_p, ggml_tensor_p, ggml_tensor_p],
     ggml_tensor_p
